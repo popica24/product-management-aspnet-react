@@ -1,5 +1,6 @@
 using Business.Contracts;
-using Data.Repositories;
+using Data;
+using WebAPI.Helpers;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,7 +11,9 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.ApplyServices();
+builder.Services.ApplyServices(); //Registers interfaces and their implementation
+
+builder.Services.AddTransient<IConnectionString>(x => new ConnectionString(builder.Configuration.GetConnectionString("Default")));
 
 var app = builder.Build();
 
