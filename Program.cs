@@ -13,6 +13,17 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.ApplyServices(); //Registers interfaces and their implementation
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("CorsPolicy",builder =>
+    {
+        builder.WithOrigins("http://localhost:5173")
+        .AllowAnyMethod()
+        .AllowAnyHeader()
+        .AllowCredentials();
+    });
+});
+
 builder.Services.AddTransient<IConnectionString>(x => new ConnectionString(builder.Configuration.GetConnectionString("Default")));
 
 var app = builder.Build();
@@ -25,6 +36,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseCors();
 
 app.UseAuthorization();
 

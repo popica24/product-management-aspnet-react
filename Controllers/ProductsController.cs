@@ -1,10 +1,12 @@
 ﻿using Business.Contracts;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using WebAPI.Models;
 
 namespace WebAPI.Controllers
 {
+    [EnableCors("CorsPolicy")]
     [Route("api/[controller]/")]
     [ApiController]
     public class ProductsController : ControllerBase
@@ -22,7 +24,7 @@ namespace WebAPI.Controllers
         public ActionResult<IEnumerable<ProductModel>> Get(int offset = 0, int limit = 6)
         {
             var items = _productRepository.GetAll(offset,limit);
-            return items.Any() ? items.Select(x=>new ProductModel(x)).ToList() :  NotFound();
+            return items.Any() ? items.Select(x=>new ProductModel(x)).ToList() :  NoContent();
         }
 
         [HttpGet("{id?}")]
@@ -30,6 +32,17 @@ namespace WebAPI.Controllers
         {
             var item = _productRepository.Get(id);
             return item == null ? NotFound() : new ProductModel(item);
+        }
+
+        [HttpGet("filter/{offset?}/{limit?}")]
+        public ActionResult<IEnumerable<ProductModel>> Filter([FromQuery] ProductFilter model,int offset = 0,int limit = 100)
+        //https://stackoverflow.com/questions/56585461/how-can-i-pass-object-param-to-get-method-in-web-api
+        {
+            if (model == null) return BadRequest("Request cannot be null");
+            var entity = model.ToParameters(offset,limit);
+           
+            var result = _productRepository.Filter(entity);
+            return result.Any() ? result.Select(x=>new ProductModel(x)).ToList() : NoContent();
         }
 
         [HttpPost]  
@@ -64,4 +77,6 @@ namespace WebAPI.Controllers
             return result ? NoContent() : BadRequest();
         }
     }
+
+   
 }

@@ -1,9 +1,11 @@
 ﻿using Business.Contracts;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using WebAPI.Models;
 
 namespace WebAPI.Controllers
 {
+    [EnableCors("CorsPolicy")]
     [Route("api/[controller]/")]
     [ApiController]
     public class CategoriesController : ControllerBase
@@ -44,7 +46,7 @@ namespace WebAPI.Controllers
             return BadRequest();
         }
 
-        [HttpDelete("/{id?}")]
+        [HttpDelete("{id?}")]
         public ActionResult Delete([FromRoute] int id) {
             if (id == 0 || Get(id).Result == NotFound()) return BadRequest();
             var isDeletedFromProductCategory = _categoryProduct.DeleteCategory(id);
@@ -52,7 +54,7 @@ namespace WebAPI.Controllers
             return (isDeletedFromCategory && isDeletedFromProductCategory) ? NoContent() : NotFound();
         }
 
-        [HttpPut("/{id?}")]
+        [HttpPut("{id?}")]
         public ActionResult Put([FromBody]CategoryBody item, [FromRoute] int id) 
         { 
             if(id == 0 || item == null) return BadRequest("Id or item null");

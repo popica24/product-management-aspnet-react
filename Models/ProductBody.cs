@@ -1,4 +1,5 @@
 ﻿using Business.Domain;
+using Business.Services;
 using System.ComponentModel.DataAnnotations;
 
 namespace WebAPI.Models
@@ -25,5 +26,6 @@ namespace WebAPI.Models
                 Quantity = Quantity
             };
         }
+       
     }
 }
