@@ -1,4 +1,5 @@
 ﻿using Business.Contracts;
+using Data.Repositories;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using WebAPI.Models;
@@ -31,6 +32,17 @@ namespace WebAPI.Controllers
         public ActionResult<CategoryModel> Get([FromRoute] int id) {
             var item = _categoryRepository.Get(id);
             return item == null ? NotFound() : new CategoryModel(item);
+        }
+
+        [HttpGet("filter/{offset?}/{limit?}")]
+        public ActionResult<IEnumerable<CategoryModel>> Filter([FromQuery] CategoryFilter model, int offset = 0, int limit = 100)
+        //https://stackoverflow.com/questions/56585461/how-can-i-pass-object-param-to-get-method-in-web-api
+        {
+            if (model == null) return BadRequest("Request cannot be null");
+            var entity = model.ToParameters(offset, limit);
+
+            var result = _categoryRepository.Filter(entity);
+            return result.Any() ? result.Select(x => new CategoryModel(x)).ToList() : NoContent();
         }
 
         [HttpPost]
