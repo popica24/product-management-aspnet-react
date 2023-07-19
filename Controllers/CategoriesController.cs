@@ -20,11 +20,11 @@ namespace WebAPI.Controllers
         }
 
         [HttpGet("{offset?}/{limit?}")]
-        public ActionResult<IEnumerable<CategoryModel>> Get([FromRoute] int offset = 0, [FromRoute] int limit = 100)
+        public ActionResult<Response<CategoryModel>> Get([FromRoute] int offset = 0, [FromRoute] int limit = 100)
         {
             var response = _categoryRepository.GetAll(offset, limit);
-            if(response.HasNextPage)
-            return response.Data.Select(x => new CategoryModel(x)).ToList();
+            if(response.HasNextPage || response.IsLastPage)
+                return new Response<CategoryModel>(response.TotalRecords,response.Data.Select(x => new CategoryModel(x)).ToList());
             return NoContent();
         }
 
@@ -35,11 +35,16 @@ namespace WebAPI.Controllers
         }
 
         [HttpGet("filter/{offset?}/{limit?}")]
-        public ActionResult<IEnumerable<CategoryModel>> Filter([FromQuery] CategoryFilter model, int offset = 0, int limit = 100)
+        public ActionResult<Response<CategoryModel>> Filter([FromQuery] CategoryFilter model, int offset = 0, int limit = 100)
         //https://stackoverflow.com/questions/56585461/how-can-i-pass-object-param-to-get-method-in-web-api
         {
-            throw new NotImplementedException();
-
+            var parameters = model.ToParameters();
+            var response = _categoryRepository.Filter(parameters, offset, limit);
+            if (response.HasMoreItems || response.IsLastPage) {
+                return new Response<CategoryModel>(response.TotalRecords, response.Data.Select(x => new CategoryModel(x)).ToList());
+            }
+               
+            return NoContent();
         }
 
         [HttpPost]

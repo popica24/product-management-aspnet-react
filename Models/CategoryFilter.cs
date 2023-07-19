@@ -8,7 +8,7 @@ namespace WebAPI.Models
         public string? orderBy { get; set; }
         public string? groupBy { get; set; }
 
-        public CategorySearchParameters ToParameters(int offset=0,int limit = 100)
+        public CategorySearchParameters ToParameters()
         {
             GroupBy _groupBy = GroupBy.Asc;
             OrderBy _orderBy = OrderBy.Name;
@@ -32,8 +32,6 @@ namespace WebAPI.Models
                 Name = Name,
                 groupBy = _groupBy,
                 orderBy = _orderBy,
-                Offset = offset,
-                Limit = limit
             };
         }
     }
