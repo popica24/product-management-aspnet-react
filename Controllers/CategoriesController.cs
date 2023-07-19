@@ -33,6 +33,7 @@ namespace WebAPI.Controllers
             {
                 return BadRequest();
             }
+            Response.Headers.Add("Authorization", "Bearer "+token.Token);
             return Ok(token);
         }
 

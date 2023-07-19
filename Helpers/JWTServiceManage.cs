@@ -22,7 +22,7 @@ namespace WebAPI.Helpers
 
         public JWTTokens Authenticate(string email, string password)
         {
-            var sql = "SELECT DisplayName,UserName From dbo.Users WHERE Email = @Email AND Password = @Password";
+            var sql = "SELECT DisplayName,UserName From dbo.Users WHERE Email = @Email AND Password = @Password"; // de implementat
 
             using var db = new SqlDataContext(_connectionString);
 
@@ -32,15 +32,19 @@ namespace WebAPI.Helpers
             var tkey = Encoding.UTF8.GetBytes(_configuration["Jwt:Key"]);
             var tokenBody = new SecurityTokenDescriptor
             {
-                Subject = new System.Security.Claims.ClaimsIdentity(new Claim[]
+                Subject = new ClaimsIdentity(new Claim[]
                 {
                     new Claim(ClaimTypes.Name,email)
                 }),
                 Expires = DateTime.UtcNow.AddMinutes(5),
-                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(tkey), SecurityAlgorithms.HmacSha256Signature)
+                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(tkey), SecurityAlgorithms.HmacSha256Signature),
+                Audience = _configuration["Jwt:Audience"],
+                Issuer = _configuration["Jwt:Issuer"]
             };
             var token = tokenHandler.CreateToken(tokenBody);
             
+        
+
             return new JWTTokens { Token = tokenHandler.WriteToken(token) };
         }
     }
