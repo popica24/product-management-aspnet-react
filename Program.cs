@@ -1,5 +1,8 @@
 using Business.Contracts;
 using Data;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 using WebAPI.Helpers;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -25,6 +28,26 @@ builder.Services.AddCors(options =>
 });
 
 builder.Services.AddTransient<IConnectionString>(x => new ConnectionString(builder.Configuration.GetConnectionString("Default")));
+builder.Services.AddTransient<IJWTTokenService,JWTServiceManage>();
+builder.Services.AddAuthentication(k =>
+{
+    k.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    k.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+}).AddJwtBearer(p =>
+{
+    var key = Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]);
+    p.SaveToken = true;
+    p.TokenValidationParameters = new TokenValidationParameters
+    {
+        ValidateIssuer = true,
+        ValidateAudience = true,
+        ValidateLifetime = true,
+        ValidateIssuerSigningKey = true,
+        ValidIssuer = builder.Configuration["Jwt:key"],
+        ValidAudience = builder.Configuration["Jwt:Audience"],
+        IssuerSigningKey = new SymmetricSecurityKey(key)
+    };
+});
 
 var app = builder.Build();
 

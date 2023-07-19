@@ -1,10 +1,12 @@
 ﻿using Business.Contracts;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using WebAPI.Models;
 
 namespace WebAPI.Controllers
 {
+    [Authorize]
     [EnableCors("CorsPolicy")]
     [Route("api/[controller]/")]
     [ApiController]
@@ -12,11 +14,26 @@ namespace WebAPI.Controllers
     {
         private readonly ICategoryRepository _categoryRepository;
         private readonly ICategoryProductRepository _categoryProduct;
+        private readonly IJWTTokenService _jwttokenservice;
 
-        public CategoriesController(ICategoryRepository categoryRepository, ICategoryProductRepository categoryProduct)
+        public CategoriesController(ICategoryRepository categoryRepository, ICategoryProductRepository categoryProduct, IJWTTokenService jwttokenservice)
         {
             _categoryRepository = categoryRepository;
             _categoryProduct = categoryProduct;
+            _jwttokenservice = jwttokenservice;
+        }
+
+        [AllowAnonymous]
+        [HttpPut]
+        [Route("Authenticate")]
+        public IActionResult Authenticate(string email, string password)
+        {
+            var token = _jwttokenservice.Authenticate(email, password);
+            if(token == null)
+            {
+                return BadRequest();
+            }
+            return Ok(token);
         }
 
         [HttpGet("{offset?}/{limit?}")]
