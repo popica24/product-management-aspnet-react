@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations;
 namespace WebAPI.Models
 {
     public class ProductBody
-    { 
+    {
         [Required]
         [MaxLength(255)]
         public string Name { get; set; }
@@ -26,6 +26,6 @@ namespace WebAPI.Models
                 Quantity = Quantity
             };
         }
-       
+
     }
 }

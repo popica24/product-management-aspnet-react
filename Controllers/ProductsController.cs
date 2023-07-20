@@ -1,4 +1,5 @@
 ﻿using Business.Contracts;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -9,6 +10,7 @@ namespace WebAPI.Controllers
     [EnableCors("CorsPolicy")]
     [Route("api/[controller]/")]
     [ApiController]
+    [Authorize]
     public class ProductsController : ControllerBase
     {
         private readonly IProductRepository _productRepository;

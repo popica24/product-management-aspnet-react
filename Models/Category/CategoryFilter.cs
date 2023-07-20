@@ -17,14 +17,14 @@ namespace WebAPI.Models
             {
                 Enum.TryParse(groupBy, out GroupBy _groupByParsed);
                 _groupBy = _groupByParsed;
-                   
+
             }
             if (!string.IsNullOrEmpty(orderBy))
             {
                 Enum.TryParse(orderBy, out OrderBy _orderByParsed);
-                
-                   _orderBy = _orderByParsed;
-                
+
+                _orderBy = _orderByParsed;
+
             }
 
             return new CategorySearchParameters()

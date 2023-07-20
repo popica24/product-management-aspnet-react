@@ -30,7 +30,7 @@ builder.Services.AddCors(options =>
 });
 
 builder.Services.AddTransient<IConnectionString>(x => new ConnectionString(builder.Configuration.GetConnectionString("Default")));
-builder.Services.AddTransient<IJWTTokenService,JWTServiceManage>();
+builder.Services.AddTransient<ITokenHelper,TokenHelper>();
 builder.Services.AddAuthentication(k =>
 {
     k.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;

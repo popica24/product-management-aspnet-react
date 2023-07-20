@@ -2,40 +2,26 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
+using WebAPI.Helpers;
 using WebAPI.Models;
 
 namespace WebAPI.Controllers
 {
-    [Authorize]
+ 
     [EnableCors("CorsPolicy")]
     [Route("api/[controller]/")]
     [ApiController]
+    [Authorize]
     public class CategoriesController : ControllerBase
     {
         private readonly ICategoryRepository _categoryRepository;
         private readonly ICategoryProductRepository _categoryProduct;
-        private readonly IJWTTokenService _jwttokenservice;
-
-        public CategoriesController(ICategoryRepository categoryRepository, ICategoryProductRepository categoryProduct, IJWTTokenService jwttokenservice)
+        public CategoriesController(ICategoryRepository categoryRepository, ICategoryProductRepository categoryProduct, IAuthenticationService authenticationService, ITokenHelper tokenHelper)
         {
             _categoryRepository = categoryRepository;
             _categoryProduct = categoryProduct;
-            _jwttokenservice = jwttokenservice;
         }
 
-        [AllowAnonymous]
-        [HttpPut]
-        [Route("Authenticate")]
-        public IActionResult Authenticate(string email, string password)
-        {
-            var token = _jwttokenservice.Authenticate(email, password);
-            if(token == null)
-            {
-                return BadRequest();
-            }
-            Response.Headers.Add("Authorization", "Bearer "+token.Token);
-            return Ok(token);
-        }
 
         [HttpGet("{offset?}/{limit?}")]
         public ActionResult<Response<CategoryModel>> Get([FromRoute] int offset = 0, [FromRoute] int limit = 100)
