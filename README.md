@@ -30,7 +30,7 @@ Before you begin, ensure you have met the following requirements:
 ## Getting Started
 
 1. Clone this repository:
-git clone https://github.com/your-username/product-category-app.git
+git clone [https://github.com/your-username/product-category-app.git](https://github.com/popica24/product-management-aspnet-react.git)
 
 2. Navigate to the `WEBAPI` folder and set up your database connection in `appsettings.json`.
 
