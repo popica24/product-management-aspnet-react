@@ -22,3 +22,15 @@ C:\Users\andrei\Desktop\Practica Roweb\Business\obj\Debug\net7.0\Business.dll
 C:\Users\andrei\Desktop\Practica Roweb\Business\obj\Debug\net7.0\refint\Business.dll
 C:\Users\andrei\Desktop\Practica Roweb\Business\obj\Debug\net7.0\Business.pdb
 C:\Users\andrei\Desktop\Practica Roweb\Business\obj\Debug\net7.0\ref\Business.dll
+C:\Users\andrei\Desktop\commit\Business\bin\Debug\net7.0\Business.deps.json
+C:\Users\andrei\Desktop\commit\Business\bin\Debug\net7.0\Business.dll
+C:\Users\andrei\Desktop\commit\Business\bin\Debug\net7.0\Business.pdb
+C:\Users\andrei\Desktop\commit\Business\obj\Debug\net7.0\Business.csproj.AssemblyReference.cache
+C:\Users\andrei\Desktop\commit\Business\obj\Debug\net7.0\Business.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\andrei\Desktop\commit\Business\obj\Debug\net7.0\Business.AssemblyInfoInputs.cache
+C:\Users\andrei\Desktop\commit\Business\obj\Debug\net7.0\Business.AssemblyInfo.cs
+C:\Users\andrei\Desktop\commit\Business\obj\Debug\net7.0\Business.csproj.CoreCompileInputs.cache
+C:\Users\andrei\Desktop\commit\Business\obj\Debug\net7.0\Business.dll
+C:\Users\andrei\Desktop\commit\Business\obj\Debug\net7.0\refint\Business.dll
+C:\Users\andrei\Desktop\commit\Business\obj\Debug\net7.0\Business.pdb
+C:\Users\andrei\Desktop\commit\Business\obj\Debug\net7.0\ref\Business.dll

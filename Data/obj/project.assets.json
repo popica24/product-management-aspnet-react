@@ -2506,11 +2506,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\andrei\\Desktop\\Practica Roweb\\Data\\Data.csproj",
+      "projectUniqueName": "C:\\Users\\andrei\\Desktop\\commit\\Data\\Data.csproj",
       "projectName": "Data",
-      "projectPath": "C:\\Users\\andrei\\Desktop\\Practica Roweb\\Data\\Data.csproj",
+      "projectPath": "C:\\Users\\andrei\\Desktop\\commit\\Data\\Data.csproj",
       "packagesPath": "C:\\Users\\andrei\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\andrei\\Desktop\\Practica Roweb\\Data\\obj\\",
+      "outputPath": "C:\\Users\\andrei\\Desktop\\commit\\Data\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\andrei\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -2527,8 +2527,8 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "projectReferences": {
-            "C:\\Users\\andrei\\Desktop\\Practica Roweb\\Business\\Business.csproj": {
-              "projectPath": "C:\\Users\\andrei\\Desktop\\Practica Roweb\\Business\\Business.csproj"
+            "C:\\Users\\andrei\\Desktop\\commit\\Business\\Business.csproj": {
+              "projectPath": "C:\\Users\\andrei\\Desktop\\commit\\Business\\Business.csproj"
             }
           }
         }

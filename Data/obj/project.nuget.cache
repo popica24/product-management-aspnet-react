@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "iqk0KRrhxj13P2j24tqbvNCZnaaTBB+SPrsop7gVKwrMyZnwKBy87D4dwl5yyu2lQRZfv/H6fqBGJkq6LFRbtQ==",
+  "dgSpecHash": "bz0wpJhKbEnFYeI5eWfLB1kvyt460R1i09AVGRS+5Fy/bLhXX3Z9Y3SnYeXzXEVECbTaZ+rdRP4bwrmJ5ePQiw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\andrei\\Desktop\\Practica Roweb\\Data\\Data.csproj",
+  "projectFilePath": "C:\\Users\\andrei\\Desktop\\commit\\Data\\Data.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\andrei\\.nuget\\packages\\azure.core\\1.25.0\\azure.core.1.25.0.nupkg.sha512",
     "C:\\Users\\andrei\\.nuget\\packages\\azure.identity\\1.7.0\\azure.identity.1.7.0.nupkg.sha512",

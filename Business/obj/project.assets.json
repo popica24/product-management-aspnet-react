@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\andrei\\Desktop\\Practica Roweb\\Business\\Business.csproj",
+      "projectUniqueName": "C:\\Users\\andrei\\Desktop\\commit\\Business\\Business.csproj",
       "projectName": "Business",
-      "projectPath": "C:\\Users\\andrei\\Desktop\\Practica Roweb\\Business\\Business.csproj",
+      "projectPath": "C:\\Users\\andrei\\Desktop\\commit\\Business\\Business.csproj",
       "packagesPath": "C:\\Users\\andrei\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\andrei\\Desktop\\Practica Roweb\\Business\\obj\\",
+      "outputPath": "C:\\Users\\andrei\\Desktop\\commit\\Business\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\andrei\\AppData\\Roaming\\NuGet\\NuGet.Config",
